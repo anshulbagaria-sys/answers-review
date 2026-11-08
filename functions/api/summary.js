@@ -82,7 +82,6 @@ export async function onRequestGet({ env, request }) {
         answers_touched: 0,
         human_levels: 0,
         edits: 0,
-        answer_ids: new Set(),
       });
     }
     return byN.get(n);
@@ -95,7 +94,6 @@ export async function onRequestGet({ env, request }) {
     if (n == null) continue;
     const s = slot(n);
     s.answers += 1;
-    s.answer_ids.add(a.id);
     answerToN.set(a.id, n);
     answerMeta.set(a.id, { question: a.question, persona: a.persona, batch: a.batch });
     if (a.scoring && a.scoring.status === "scored") s.scored += 1;
